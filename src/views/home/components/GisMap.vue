@@ -1,7 +1,10 @@
 <!-- GIS地图 -->
 <template>
   <div class="gis-map">
-    <div class="content">GIS地图</div>
+    <div class="content">
+      <div class="title">GIS地图</div>
+      <div class="detail"></div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +25,8 @@ export default {
 
 <style lang="scss" scoped>
     .gis-map {
-
+      flex: 1;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
     }
 </style>

@@ -7,6 +7,7 @@ import $ from 'jquery'
 /** ******   style   *************/
 import 'styles/reset.css'
 import 'styles/global.scss'
+import 'styles/iconfont.css'
 
 /** ******   prototype   *************/
 Vue.prototype.$ = $
