@@ -8,7 +8,10 @@ import $ from 'jquery'
 import 'styles/reset.css'
 import 'styles/global.scss'
 import 'styles/iconfont.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
+Vue.use(ElementUI)
 /** ******   prototype   *************/
 Vue.prototype.$ = $
 

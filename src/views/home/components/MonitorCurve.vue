@@ -4,6 +4,12 @@
     <div class="content">
       <div class="title">监控曲线</div>
       <div class="detail">
+        <el-select v-model="energy">
+          <el-option value="1" label="电"></el-option>
+          <el-option value="2" label="水"></el-option>
+          <el-option value="3" label="气"></el-option>
+          <el-option value="4" label="热"></el-option>
+        </el-select>
         <div id="monitorCurve"></div>
       </div>
     </div>
@@ -17,7 +23,9 @@ export default {
   mixins: [],
   components: {},
   data () {
-    return {}
+    return {
+      energy: '1'
+    }
   },
   methods: {
     chartInit (data) {
@@ -92,17 +100,7 @@ export default {
         .color('type')
         .shape('circle')
 
-      chart.legend({
-        position: 'top-right',
-        itemName: {
-          formatter: (type) => {
-            return type === 'electric' ? '用电量 ' : (type === 'gas' ? '用气量 ' : (type === 'water' ? '用水量 ' : '热量 '))
-          },
-          style: {
-            fill: '#ffffff'
-          }
-        }
-      })
+      chart.legend(false)
 
       chart.render()
     }
@@ -130,7 +128,34 @@ export default {
       padding-left: 0 !important;
       padding-right: 0 !important;
       .detail {
-        padding: 5px;
+        padding: 10px;
+        position: relative;
+        ::v-deep {
+          .el-select {
+            position: absolute;
+            z-index: 10;
+            top: 10px;
+            right: 10px;
+            .el-input {
+              &.is-focus {
+                .el-input__inner {
+                  border-color: transparent;
+                }
+              }
+              .el-input__inner {
+                width: 80px;
+                background: rgba(255, 255, 255, .85);
+                outline: none;
+                &:hover {
+                  background: rgba(255, 255, 255, 1);
+                }
+                &:focus {
+                  border-color: transparent;
+                }
+              }
+            }
+          }
+        }
         #monitorCurve {
           width: 100%;
           height: 100%;
