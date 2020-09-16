@@ -122,23 +122,15 @@ export default {
             align-items: flex-end;
           }
           .nav-button {
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            position: absolute;
             top: 5px;
             right: 3vw;
-            padding: 10px;
           }
         }
         .header-right {
           position: relative;
           .nav-button {
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            position: absolute;
             top: 5px;
             left: 3vw;
-            padding: 10px;
           }
           .user-info {
             height: 100%;
@@ -146,6 +138,30 @@ export default {
             justify-content: flex-end;
             align-items: flex-end;
             user-select: none;
+          }
+        }
+        .nav-button {
+          border-radius: 4px;
+          border: 1px solid #ddd;
+          position: absolute;
+          padding: 10px;
+          background: linear-gradient(to right, rgba(4, 76, 178, 0.5), rgba(4, 76, 178, 1));
+          user-select: none;
+          box-shadow: 0 0 5px 5px rgba(4, 76, 178, 0.5);
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.25);
+          }
+          &:hover {
+            cursor: pointer;
+            &::before {
+              display: none;
+            }
           }
         }
       }
