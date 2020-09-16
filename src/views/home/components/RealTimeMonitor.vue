@@ -6,6 +6,7 @@
       <div class="detail">
         <div class="energy-item">
           <div class="icon iconfont">&#xe631;</div>
+          <span>电</span>
           <div class="energy-total">
             <countTo :startVal="startVal" :endVal="energy.electric" :duration="duration"></countTo>
           </div>
@@ -13,6 +14,7 @@
         </div>
         <div class="energy-item">
           <div class="icon iconfont">&#xe613;</div>
+          <span>气</span>
           <div class="energy-total">
             <countTo :startVal="startVal" :endVal="energy.gas" :duration="duration"></countTo>
           </div>
@@ -20,6 +22,7 @@
         </div>
         <div class="energy-item">
           <div class="icon iconfont">&#xe60b;</div>
+          <span>水</span>
           <div class="energy-total">
             <countTo :startVal="startVal" :endVal="energy.water" :duration="duration"></countTo>
           </div>
@@ -27,6 +30,7 @@
         </div>
         <div class="energy-item">
           <div class="icon iconfont">&#xe614;</div>
+          <span>热</span>
           <div class="energy-total">
             <countTo :startVal="startVal" :endVal="energy.heat" :duration="duration"></countTo>
           </div>
@@ -107,6 +111,10 @@ export default {
           }
           .icon {
             font-size: 30px;
+          }
+          & > span {
+            font-weight: 600;
+            margin: 0 5px;
           }
           .energy-total {
             margin: 0 10px;

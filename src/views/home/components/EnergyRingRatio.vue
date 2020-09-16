@@ -6,101 +6,101 @@
       <div class="detail">
         <div class="energy-item-wrap">
           <div class="energy-item">
-            <div class="item-left">
-              <div class="energy-total-text">
-                <span>今日用电</span>
-                <div class="text-icon-wrap">
-                  <countTo :startVal="startVal" :endVal="energy.electric.today" :duration="duration"></countTo>
-                  <i class="icon iconfont" v-html="energy.electric.today > energy.electric.yesterday ? '&#xe62b;' : '&#xe62a;'"></i>
-                </div>
-              </div>
-              <div class="energy-total-text">
-                <span>昨日用电</span>
-                <div class="text-icon-wrap">
-                  <countTo :startVal="startVal" :endVal="energy.electric.yesterday" :duration="duration"></countTo>
-                  <i class="icon iconfont" v-html="energy.electric.today < energy.electric.yesterday ? '&#xe62b;' : '&#xe62a;'"></i>
-                </div>
-              </div>
+            <div class="top">
+              <span>今日用量:</span>
+              <countTo :startVal="startVal" :endVal="energy.electric.today" :duration="duration"></countTo>
+              <span>kw/h</span>
             </div>
-            <div class="item-right-outer electric">
-              <div class="item-right"></div>
-              <div class="inner">
-                <div class="inner-icon iconfont">&#xe631;</div>
+            <div class="mid">
+              <span>电</span>
+              <div class="icon-outer electric">
+                <div class="item-right"></div>
+                <div class="inner">
+                  <div class="inner-icon iconfont">&#xe631;</div>
+                </div>
               </div>
+              <span>占比</span>
+              <p>25</p>
+              <span>%</span>
+            </div>
+            <div class="bottom">
+              <span>昨日用量:</span>
+              <countTo :startVal="startVal" :endVal="energy.electric.today" :duration="duration"></countTo>
+              <span>kw/h</span>
             </div>
           </div>
           <div class="energy-item">
-            <div class="item-left">
-              <div class="energy-total-text">
-                <span>今日用水</span>
-                <div class="text-icon-wrap">
-                  <countTo :startVal="startVal" :endVal="energy.water.today" :duration="duration"></countTo>
-                  <i class="icon iconfont" v-html="energy.water.today > energy.water.yesterday ? '&#xe62b;' : '&#xe62a;'"></i>
-                </div>
-              </div>
-              <div class="energy-total-text">
-                <span>昨日用水</span>
-                <div class="text-icon-wrap">
-                  <countTo :startVal="startVal" :endVal="energy.water.yesterday" :duration="duration"></countTo>
-                  <i class="icon iconfont" v-html="energy.water.today < energy.water.yesterday ? '&#xe62b;' : '&#xe62a;'"></i>
-                </div>
-              </div>
+            <div class="top">
+              <span>今日用量:</span>
+              <countTo :startVal="startVal" :endVal="energy.water.today" :duration="duration"></countTo>
+              <span>m³</span>
             </div>
-            <div class="item-right-outer water">
-              <div class="item-right"></div>
-              <div class="inner">
-                <div class="inner-icon iconfont">&#xe60b;</div>
+            <div class="mid">
+              <span>水</span>
+              <div class="icon-outer water">
+                <div class="item-right"></div>
+                <div class="inner">
+                  <div class="inner-icon iconfont">&#xe60b;</div>
+                </div>
               </div>
+              <span>占比</span>
+              <p>25</p>
+              <span>%</span>
+            </div>
+            <div class="bottom">
+              <span>昨日用量:</span>
+              <countTo :startVal="startVal" :endVal="energy.water.today" :duration="duration"></countTo>
+              <span>m³</span>
             </div>
           </div>
         </div>
         <div class="energy-item-wrap">
           <div class="energy-item">
-            <div class="item-left">
-              <div class="energy-total-text">
-                <span>今日用气</span>
-                <div class="text-icon-wrap">
-                  <countTo :startVal="startVal" :endVal="energy.gas.today" :duration="duration"></countTo>
-                  <i class="icon iconfont" v-html="energy.gas.today > energy.gas.yesterday ? '&#xe62b;' : '&#xe62a;'"></i>
-                </div>
-              </div>
-              <div class="energy-total-text">
-                <span>昨日用气</span>
-                <div class="text-icon-wrap">
-                  <countTo :startVal="startVal" :endVal="energy.gas.yesterday" :duration="duration"></countTo>
-                  <i class="icon iconfont" v-html="energy.gas.today > energy.gas.yesterday ? '&#xe62b;' : '&#xe62a;'"></i>
-                </div>
-              </div>
+            <div class="top">
+              <span>今日用量:</span>
+              <countTo :startVal="startVal" :endVal="energy.gas.today" :duration="duration"></countTo>
+              <span>m³</span>
             </div>
-            <div class="item-right-outer gas">
-              <div class="item-right"></div>
-              <div class="inner">
-                <div class="inner-icon iconfont">&#xe613;</div>
+            <div class="mid">
+              <span>气</span>
+              <div class="icon-outer gas">
+                <div class="item-right"></div>
+                <div class="inner">
+                  <div class="inner-icon iconfont">&#xe613;</div>
+                </div>
               </div>
+              <span>占比</span>
+              <p>25</p>
+              <span>%</span>
+            </div>
+            <div class="bottom">
+              <span>昨日用量:</span>
+              <countTo :startVal="startVal" :endVal="energy.gas.today" :duration="duration"></countTo>
+              <span>m³</span>
             </div>
           </div>
           <div class="energy-item">
-            <div class="item-left">
-              <div class="energy-total-text">
-                <span>今日热量</span>
-                <div class="text-icon-wrap">
-                  <countTo :startVal="startVal" :endVal="energy.heat.today" :duration="duration"></countTo>
-                  <i class="icon iconfont" v-html="energy.heat.today > energy.heat.yesterday ? '&#xe62b;' : '&#xe62a;'"></i>
-                </div>
-              </div>
-              <div class="energy-total-text">
-                <span>昨日热量</span>
-                <div class="text-icon-wrap">
-                  <countTo :startVal="startVal" :endVal="energy.heat.yesterday" :duration="duration"></countTo>
-                  <i class="icon iconfont" v-html="energy.heat.today < energy.heat.yesterday ? '&#xe62b;' : '&#xe62a;'"></i>
-                </div>
-              </div>
+            <div class="top">
+              <span>今日用量:</span>
+              <countTo :startVal="startVal" :endVal="energy.heat.today" :duration="duration"></countTo>
+              <span></span>
             </div>
-            <div class="item-right-outer heat">
-              <div class="item-right"></div>
-              <div class="inner">
-                <div class="inner-icon iconfont">&#xe614;</div>
+            <div class="mid">
+              <span>热</span>
+              <div class="icon-outer heat">
+                <div class="item-right"></div>
+                <div class="inner">
+                  <div class="inner-icon iconfont">&#xe614;</div>
+                </div>
               </div>
+              <span>占比</span>
+              <p>25</p>
+              <span>%</span>
+            </div>
+            <div class="bottom">
+              <span>昨日用量:</span>
+              <countTo :startVal="startVal" :endVal="energy.heat.today" :duration="duration"></countTo>
+              <span>kw/h</span>
             </div>
           </div>
         </div>
@@ -166,14 +166,48 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             flex: 1;
             overflow: hidden;
-            margin-right: 1vw;
+            margin-right: 5px;
             border-radius: 4px;
             background: linear-gradient(to right, #0071ff, #05308F);
             padding: 5px;
             &:last-child {
               margin-right: 0;
+            }
+            .top,
+            .mid,
+            .bottom {
+              display: flex;
+              align-items: center;
+              span {
+                font-size: 0.85rem;
+                line-height: 0.85rem;
+              }
+            }
+            .top,
+            .bottom {
+              span {
+                &:nth-child(2) {
+                  padding: 0 5px;
+                  border-bottom: 2px solid #199EFC;
+                  margin: 0 5px;
+                }
+              }
+            }
+            .mid {
+              margin: 5px 0;
+              .icon-outer {
+                margin: 0 5px;
+              }
+              p {
+                font-size: 0.85rem;
+                line-height: 0.85rem;
+                padding: 0 5px;
+                border-bottom: 2px solid #199EFC;
+                margin: 0 5px;
+              }
             }
             .item-left {
               font-size: 12px;
@@ -198,7 +232,7 @@ export default {
                 }
               }
             }
-            .item-right-outer {
+            .icon-outer {
               position: relative;
               width: 60px;
               height: 60px;
