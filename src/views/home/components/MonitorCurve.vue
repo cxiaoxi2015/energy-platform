@@ -25,7 +25,8 @@ export default {
   data () {
     return {
       energy: 'electric',
-      chart: null
+      chart: null,
+      energyData: []
     }
   },
   methods: {
