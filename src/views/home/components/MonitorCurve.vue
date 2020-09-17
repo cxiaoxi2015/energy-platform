@@ -4,11 +4,11 @@
     <div class="content">
       <div class="title">监控曲线</div>
       <div class="detail">
-        <el-select v-model="energy">
-          <el-option value="1" label="电"></el-option>
-          <el-option value="2" label="水"></el-option>
-          <el-option value="3" label="气"></el-option>
-          <el-option value="4" label="热"></el-option>
+        <el-select v-model="energy" @change="handleEnergyChange">
+          <el-option value="electric" label="电"></el-option>
+          <el-option value="water" label="水"></el-option>
+          <el-option value="gas" label="气"></el-option>
+          <el-option value="heat" label="热"></el-option>
         </el-select>
         <div id="monitorCurve"></div>
       </div>
@@ -24,15 +24,24 @@ export default {
   components: {},
   data () {
     return {
-      energy: '1'
+      energy: 'electric',
+      chart: null
     }
   },
   methods: {
     chartInit (data) {
+      const _this = this
       const chart = new Chart({
         container: 'monitorCurve',
         autoFit: true
       })
+
+      const colorSet = {
+        electric: '#4FAAEB',
+        water: '#9AD681',
+        gas: '#FED46B',
+        heat: '#4FAAEB'
+      }
 
       chart.data(data)
       chart.scale({
@@ -52,11 +61,10 @@ export default {
         </div>
       `
       })
-
       chart.axis('total', {
         label: {
           formatter: (val) => {
-            return val
+            return val + (_this.energy === 'electric' || _this.energy === 'heat' ? 'kw/h' : 'm³')
           },
           style: {
             fill: '#ffffff'
@@ -86,7 +94,7 @@ export default {
       chart
         .line()
         .position('hours*total')
-        .color('type')
+        .color('type', (value) => colorSet[value])
         .shape('smooth')
         .tooltip('hours*type*total', function (hours, type, total) {
           return {
@@ -103,6 +111,17 @@ export default {
       chart.legend(false)
 
       chart.render()
+      this.chart = chart
+    },
+
+    /**
+     * @description: 能源切换
+     * @date: 2020-09-17 14:19:31
+     * @auth: chenxiaoxi
+     */
+    handleEnergyChange (type) {
+      const showData = this.energyData.filter(item => item.type === type)
+      this.chart.changeData(showData)
     }
   },
   computed: {},
@@ -112,12 +131,14 @@ export default {
     for (let i = 0; i < 25; i++) {
       data.push(...[
         { hours: i, type: 'electric', total: i < 12 ? 10 * i + 1 : 110 - i * 2 },
-        { hours: i, type: 'gas', total: i < 12 ? 5 * i + 1 : 55 - i * 2 },
+        { hours: i, type: 'gas', total: i < 12 ? 5000 * i + 1 : 55 - i * 2 },
         { hours: i, type: 'water', total: i < 12 ? 8 * i + 1 : 88 - i * 2 },
         { hours: i, type: 'heat', total: i < 12 ? 12 * i + 1 : 121 - i * 2 }
       ])
     }
-    this.chartInit(data)
+    this.energyData = JSON.parse(JSON.stringify(data))
+    const showData = this.energyData.filter(item => item.type === this.energy)
+    this.chartInit(showData)
   }
 }
 </script>
@@ -125,6 +146,7 @@ export default {
 <style lang="scss" scoped>
     .monitor-curve {
       flex: 1;
+      overflow: hidden;
       padding-left: 0 !important;
       padding-right: 0 !important;
       .detail {
@@ -159,6 +181,7 @@ export default {
         #monitorCurve {
           width: 100%;
           height: 100%;
+          overflow: hidden;
         }
       }
     }
