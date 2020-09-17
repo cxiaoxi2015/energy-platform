@@ -51,7 +51,7 @@ export default {
   },
   data () {
     return {
-      duration: 1000,
+      duration: 2000,
       startVal: 0,
       energy: {
         electric: 0,

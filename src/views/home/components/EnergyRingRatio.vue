@@ -120,7 +120,7 @@ export default {
   data () {
     return {
       startVal: 0,
-      duration: 1000,
+      duration: 2000,
       energy: {
         electric: {
           today: 200,
