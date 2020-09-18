@@ -65,7 +65,7 @@ export default {
       chart.axis('total', {
         label: {
           formatter: (val) => {
-            return val + (_this.energy === 'electric' || _this.energy === 'heat' ? 'kw/h' : 'm³')
+            return val + (_this.energy === 'electric' || _this.energy === 'heat' ? 'kWh' : (_this.energy === 'gas' ? 'Nm' : 't'))
           },
           style: {
             fill: '#ffffff'
@@ -99,7 +99,7 @@ export default {
         .shape('smooth')
         .tooltip('hours*type*total', function (hours, type, total) {
           return {
-            value: (type === 'electric' ? '用电量 ' : (type === 'gas' ? '用气量 ' : (type === 'water' ? '用水量 ' : '热量 '))) + total + (`${type === 'electric' || type === 'heat' ? ' kw/h' : ' m³'}`)
+            value: (type === 'electric' ? '用电量 ' : (type === 'gas' ? '用气量 ' : (type === 'water' ? '用水量 ' : '热量 '))) + total + (`${type === 'electric' || type === 'heat' ? ' kWh' : ' m³'}`)
           }
         })
 

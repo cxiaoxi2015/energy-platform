@@ -10,7 +10,7 @@
           <div class="energy-total">
             <countTo :startVal="startVal" :endVal="energy.electric" :duration="duration"></countTo>
           </div>
-          <span>kw/h</span>
+          <span>kWh</span>
         </div>
         <div class="energy-item">
           <div class="icon iconfont">&#xe613;</div>
@@ -18,7 +18,7 @@
           <div class="energy-total">
             <countTo :startVal="startVal" :endVal="energy.gas" :duration="duration"></countTo>
           </div>
-          <span>m³</span>
+          <span>Nm</span>
         </div>
         <div class="energy-item">
           <div class="icon iconfont">&#xe60b;</div>
@@ -26,7 +26,7 @@
           <div class="energy-total">
             <countTo :startVal="startVal" :endVal="energy.water" :duration="duration"></countTo>
           </div>
-          <span>m³</span>
+          <span>t</span>
         </div>
         <div class="energy-item">
           <div class="icon iconfont">&#xe614;</div>
@@ -34,7 +34,7 @@
           <div class="energy-total">
             <countTo :startVal="startVal" :endVal="energy.heat" :duration="duration"></countTo>
           </div>
-          <span>kw/h</span>
+          <span>kWh</span>
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@ export default {
 
 <style lang="scss" scoped>
     .real-time-monitor {
-      width: 22vw;
+      width: 25vw;
       .detail {
         display: flex;
         justify-content: center;

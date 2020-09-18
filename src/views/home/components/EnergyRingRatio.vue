@@ -9,7 +9,7 @@
             <div class="top">
               <span>今日用量:</span>
               <countTo :startVal="startVal" :endVal="energy.electric.today" :duration="duration"></countTo>
-              <span>kw/h</span>
+              <span>kWh</span>
             </div>
             <div class="mid">
               <span>电</span>
@@ -26,14 +26,14 @@
             <div class="bottom">
               <span>昨日用量:</span>
               <countTo :startVal="startVal" :endVal="energy.electric.today" :duration="duration"></countTo>
-              <span>kw/h</span>
+              <span>kWh</span>
             </div>
           </div>
           <div class="energy-item">
             <div class="top">
               <span>今日用量:</span>
               <countTo :startVal="startVal" :endVal="energy.water.today" :duration="duration"></countTo>
-              <span>m³</span>
+              <span>t</span>
             </div>
             <div class="mid">
               <span>水</span>
@@ -50,7 +50,7 @@
             <div class="bottom">
               <span>昨日用量:</span>
               <countTo :startVal="startVal" :endVal="energy.water.today" :duration="duration"></countTo>
-              <span>m³</span>
+              <span>t</span>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
             <div class="top">
               <span>今日用量:</span>
               <countTo :startVal="startVal" :endVal="energy.gas.today" :duration="duration"></countTo>
-              <span>m³</span>
+              <span>Nm</span>
             </div>
             <div class="mid">
               <span>气</span>
@@ -76,14 +76,14 @@
             <div class="bottom">
               <span>昨日用量:</span>
               <countTo :startVal="startVal" :endVal="energy.gas.today" :duration="duration"></countTo>
-              <span>m³</span>
+              <span>Nm</span>
             </div>
           </div>
           <div class="energy-item">
             <div class="top">
               <span>今日用量:</span>
               <countTo :startVal="startVal" :endVal="energy.heat.today" :duration="duration"></countTo>
-              <span></span>
+              <span>kWh</span>
             </div>
             <div class="mid">
               <span>热</span>
@@ -100,7 +100,7 @@
             <div class="bottom">
               <span>昨日用量:</span>
               <countTo :startVal="startVal" :endVal="energy.heat.today" :duration="duration"></countTo>
-              <span>kw/h</span>
+              <span>kWh</span>
             </div>
           </div>
         </div>
@@ -150,7 +150,7 @@ export default {
 
 <style lang="scss" scoped>
     .energy-ring-ratio {
-      width: 22vw;
+      width: 25vw;
       .detail {
         display: flex;
         flex-direction: column;

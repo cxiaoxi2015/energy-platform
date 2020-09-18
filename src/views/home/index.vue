@@ -50,7 +50,7 @@ export default {
     return {
       dateTime: moment().format('YYYY/MM/DD HH:mm:ss'),
       userInfo: {
-        userName: 'admin'
+        userName: '管理员'
       }
     }
   },

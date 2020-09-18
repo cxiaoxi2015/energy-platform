@@ -50,7 +50,7 @@ export default {
       chart.axis('total', {
         label: {
           formatter: (val) => {
-            return val + (_this.energy === 'electric' || _this.energy === 'heat' ? 'kw/h' : 'm³')
+            return val + (_this.energy === 'electric' || _this.energy === 'heat' ? 'kWh' : (_this.energy === 'gas' ? 'Nm' : 't'))
           },
           style: {
             fill: '#ffffff'
@@ -134,7 +134,7 @@ export default {
 
 <style lang="scss" scoped>
     .energy-analysis {
-      width: 22vw;
+      width: 25vw;
       padding: 10px;
       position: relative;
       #energyAnalysis {

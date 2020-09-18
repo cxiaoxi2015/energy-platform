@@ -50,13 +50,13 @@ export default {
       energyData: {
         electric: {
           current: 100,
-          total: 88,
-          ratio: 21
+          total: 880,
+          ratio: 11.3
         },
         gas: {
           current: 202,
-          total: 88,
-          ratio: 36
+          total: 1050,
+          ratio: 19.2
         },
         water: {
           current: 203,
@@ -64,9 +64,9 @@ export default {
           ratio: 14.5
         },
         heat: {
-          current: 29,
-          total: 103,
-          ratio: 28
+          current: 29002,
+          total: 100253,
+          ratio: 28.9
         }
       }
     }
@@ -93,7 +93,7 @@ export default {
 
 <style lang="scss" scoped>
     .collection-monitor {
-      width: 22vw;
+      width: 25vw;
       .detail {
         padding: 10px;
         .table {

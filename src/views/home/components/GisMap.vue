@@ -2,7 +2,6 @@
 <template>
   <div class="gis-map">
     <div class="content">
-      <div class="title">GIS地图</div>
       <div class="detail">
         <div class="weather">
           <div class="weather-item">
@@ -131,9 +130,14 @@ export default {
       flex: 1;
       padding-left: 0 !important;
       padding-right: 0 !important;
+      .content {
+        background: url("~assets/images/box-bg-3.png") no-repeat;
+        background-size: 100% 100%;
+      }
       .detail {
         padding: 10px;
         display: flex;
+        height: 100% !important;
         .map-container {
           flex: 1;
           overflow: hidden;
