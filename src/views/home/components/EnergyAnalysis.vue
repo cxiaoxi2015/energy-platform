@@ -31,12 +31,6 @@ export default {
   methods: {
     chartInit (data) {
       const _this = this
-      const colorSet = {
-        electric: '#4FAAEB',
-        water: '#9AD681',
-        gas: '#FED46B',
-        heat: '#4FAAEB'
-      }
 
       const chart = new Chart({
         container: 'energyAnalysis',
@@ -77,17 +71,29 @@ export default {
         itemTpl: `
         <div style="margin-bottom: 10px;list-style:none;">
             <span style="background-color:{color};" class="g2-tooltip-marker"></span>
-            {value}
+            {total}
         </div>
       `
       })
 
-      chart
-        .interval().position('building*total').color('total', colorSet[_this.energy])
+      chart.interval()
         .position('building*total')
         .size(30)
-        .label('total', {
-          offset: -10 // 文本距离图形的距离
+        .color('building*total', function (building, total) {
+          if (_this.energy === 'electric') {
+            return '#167BFF'
+          } else if (_this.energy === 'gas') {
+            return '#A2AD45'
+          } else if (_this.energy === 'water') {
+            return '#00AFA8'
+          } else {
+            return '#C98071'
+          }
+        })
+        .tooltip('building*total', function (building, total) {
+          return {
+            total: (_this.energy === 'electric' ? '用电量 ' : (_this.energy === 'gas' ? '用气量 ' : (_this.energy === 'water' ? '用水量 ' : '热量 '))) + total + (`${_this.energy === 'electric' || _this.energy === 'heat' ? ' kWh' : (_this.energy === 'gas' ? ' Nm' : ' t')}`)
+          }
         })
       chart.render()
       this.chart = chart

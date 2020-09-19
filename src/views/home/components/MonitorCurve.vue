@@ -34,14 +34,15 @@ export default {
       const _this = this
       const chart = new Chart({
         container: 'monitorCurve',
-        autoFit: true
+        autoFit: true,
+        padding: [30, 60]
       })
 
       const colorSet = {
-        electric: '#4FAAEB',
-        water: '#9AD681',
-        gas: '#FED46B',
-        heat: '#4FAAEB'
+        electric: '#167BFF',
+        water: '#00AFA8',
+        gas: '#A2AD45',
+        heat: '#C98071'
       }
 
       chart.data(data)
@@ -99,7 +100,7 @@ export default {
         .shape('smooth')
         .tooltip('hours*type*total', function (hours, type, total) {
           return {
-            value: (type === 'electric' ? '用电量 ' : (type === 'gas' ? '用气量 ' : (type === 'water' ? '用水量 ' : '热量 '))) + total + (`${type === 'electric' || type === 'heat' ? ' kWh' : ' m³'}`)
+            value: (type === 'electric' ? '用电量 ' : (type === 'gas' ? '用气量 ' : (type === 'water' ? '用水量 ' : '热量 '))) + total + (`${type === 'electric' || type === 'heat' ? ' kWh' : (type === 'gas' ? ' Nm' : 't')}`)
           }
         })
 

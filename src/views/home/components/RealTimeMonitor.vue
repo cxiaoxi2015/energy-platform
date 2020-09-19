@@ -88,6 +88,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '~styles/variable.scss';
     .real-time-monitor {
       width: 25vw;
       .detail {
@@ -104,10 +105,29 @@ export default {
           margin-bottom: 1.8vh;
           width: 80%;
           height: 6vh;
-          border: 2px solid #199EFC;
           padding-left: 1.5vw;
+          border-radius: 4px;
+          transition: all .2s linear;
+          &:first-child {
+            background: linear-gradient(to right, $electric-right, $electric-left, $electric-right);
+            border: 2ps solid $electric-mid;
+            box-shadow: 0 0 5px 2px $electric-mid;
+          }
+          &:nth-child(2) {
+            background: linear-gradient(to right, $gas-right, $gas-left, $gas-right);
+            border: 2ps solid $gas-mid;
+            box-shadow: 0 0 5px 2px $gas-mid;
+          }
+          &:nth-child(3) {
+            background: linear-gradient(to right, $water-right, $water-left, $water-right);
+            border: 2ps solid $water-mid;
+            box-shadow: 0 0 5px 2px $water-mid;
+          }
           &:last-child {
             margin-bottom: 0;
+            background: linear-gradient(to right, $heat-right, $heat-left, $heat-right);
+            border: 2ps solid $heat-mid;
+            box-shadow: 0 0 5px 2px $heat-mid;
           }
           .icon {
             font-size: 30px;
@@ -120,9 +140,10 @@ export default {
             margin: 0 10px;
             span {
               position: relative;
-              border-bottom: 2px solid #199EFC;
+              border-bottom: 2px solid #fff;
               padding: 5px 30px;
               top: -2px;
+              font-weight: 600;
             }
           }
           span {

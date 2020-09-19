@@ -4,11 +4,17 @@
     <div class="header">
       <div class="header-left">
         <div class="date-time">{{ dateTime }}</div>
-        <div class="nav-button">全景展示</div>
+        <div class="nav-button"
+            :class="{'active': active === 'Panorama'}"
+            @click="handlePanoramaClick"
+        >全景展示</div>
       </div>
       <div class="header-mid"></div>
       <div class="header-right">
-        <div class="nav-button">BIM监控</div>
+        <div class="nav-button"
+            :class="{'active': active === 'BIM'}"
+            @click="handleBIMClick"
+        >BIM监控</div>
         <div class="user-info">{{ userInfo.userName }}</div>
       </div>
     </div>
@@ -51,10 +57,18 @@ export default {
       dateTime: moment().format('YYYY/MM/DD HH:mm:ss'),
       userInfo: {
         userName: '管理员'
-      }
+      },
+      active: 'Panorama'
     }
   },
-  methods: {},
+  methods: {
+    handlePanoramaClick () {
+      this.active = 'Panorama'
+    },
+    handleBIMClick () {
+      this.active = 'BIM'
+    }
+  },
   computed: {},
   watch: {},
   mounted () {
@@ -141,13 +155,14 @@ export default {
           }
         }
         .nav-button {
-          border-radius: 4px;
+          border-radius: 8px;
           border: 1px solid #ddd;
           position: absolute;
           padding: 10px;
-          background: linear-gradient(to right, rgba(4, 76, 178, 0.5), rgba(4, 76, 178, 1));
+          background: #0091D1;
           user-select: none;
           box-shadow: 0 0 5px 5px rgba(4, 76, 178, 0.5);
+          font-weight: 600;
           &::before {
             content: '';
             position: absolute;
@@ -156,11 +171,16 @@ export default {
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.25);
+            display: none;
+          }
+          &.active {
+            background: #CAB51C;
+            box-shadow: 0 0 3px 1px #CAB51C;
           }
           &:hover {
             cursor: pointer;
             &::before {
-              display: none;
+              display: block;
             }
           }
         }

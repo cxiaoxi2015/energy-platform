@@ -149,6 +149,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import '~styles/variable.scss';
     .energy-ring-ratio {
       width: 25vw;
       .detail {
@@ -268,34 +269,34 @@ export default {
               }
               &.electric {
                 .item-right {
-                  background: linear-gradient(#1D7CDD, #2F74BD, #4AAAA5);
+                  background: linear-gradient($electric-circle-color1, $electric-circle-color2, $electric-circle-color3);
                 }
                 .inner-icon {
-                  background: #1D7CDD;
+                  background: $electric;
                 }
               }
               &.water {
                 .item-right {
-                  background: linear-gradient(#4AAAA5, #2F74BD, #1D7CDD);
+                  background: linear-gradient($water-right, $water-left, $water-right);
                 }
                 .inner-icon {
-                  background: #4AAAA5;
+                  background: $water-mid;
                 }
               }
               &.gas {
                 .item-right {
-                  background: linear-gradient(#2F74BD, #1D7CDD, #4AAAA5);
+                  background: linear-gradient($gas-right, $gas-left, $gas-right);
                 }
                 .inner-icon {
-                  background: #4AAAA5;
+                  background: $gas-mid;
                 }
               }
               &.heat {
                 .item-right {
-                  background: linear-gradient(#2F74BD, #4AAAA5, #1D7CDD);
+                  background: linear-gradient($heat-right, $heat-left, $heat-right);
                 }
                 .inner-icon {
-                  background: #2F74BD;
+                  background: $heat-mid;
                 }
               }
             }
