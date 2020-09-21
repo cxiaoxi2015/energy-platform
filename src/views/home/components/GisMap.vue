@@ -42,7 +42,7 @@
               animation="BMAP_ANIMATION_BOUNCE"
               @click="handleMarkClick"
             ></bm-marker>
-            <bm-boundary name="扬州市" :strokeWeight="2" strokeColor="#00f" fillColor=""></bm-boundary>
+            <bm-boundary name="扬州市" :strokeWeight="2" strokeColor="#B9D0E6" fillColor=""></bm-boundary>
           </baidu-map>
         </div>
         <div class="user">
@@ -106,14 +106,66 @@ export default {
         var SE_JW = '180, -90;' // 东南角
         // 4.添加环形遮罩层
         var ply1 = new BMap.Polygon(rs.boundaries[0] + SE_JW + SE_JW + WS_JW + NW_JW + EN_JW + SE_JW,
-          { strokeColor: 'none', fillColor: 'rgb(246,246,246)', fillOpacity: 0.8, strokeOpacity: 0.5 }) // 建立多边形覆盖物
+          { strokeColor: 'none', fillColor: 'rgb(5, 31, 48)', fillOpacity: 0.8, strokeOpacity: 0.5 }) // 建立多边形覆盖物
+        const mapStyle = [
+          // 陆地
+          {
+            featureType: 'land',
+            elementType: 'all',
+            stylers: {
+              color: '#073763'
+            }
+          },
+          // 水系
+          {
+            featureType: 'water',
+            elementType: 'all',
+            stylers: {
+              color: '#073763',
+              lightness: -54
+            }
+          },
+          // 国道与高速
+          {
+            featureType: 'highway',
+            elementType: 'all',
+            stylers: {
+              color: '#45818e'
+            }
+          },
+          // 边界线
+          {
+            featureType: 'boundary',
+            elementType: 'all',
+            stylers: {
+              color: '#ffffff',
+              lightness: -62,
+              visibility: 'on'
+            }
+          },
+          // 行政标注
+          {
+            featureType: 'label',
+            elementType: 'labels.text.fill',
+            stylers: {
+              color: '#ffffff',
+              visibility: 'on'
+            }
+          },
+          {
+            featureType: 'label',
+            elementType: 'labels.text.stroke',
+            stylers: {
+              color: '#444444',
+              visibility: 'on'
+            }
+          }
+        ]
+        map.setMapStyle({
+          styleJson: mapStyle
+        })
         map.addOverlay(ply1)
       })
-    },
-    draw ({ el, BMap, map }) {
-      const pixel = map.pointToOverlayPixel(new BMap.Point(119.41, 32.40))
-      el.style.left = pixel.x - 60 + 'px'
-      el.style.top = pixel.y - 20 + 'px'
     },
     handleMarkClick () {
       console.log('点击了')

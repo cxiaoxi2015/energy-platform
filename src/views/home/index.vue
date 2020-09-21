@@ -116,7 +116,7 @@ export default {
       padding: 0 1.1vw 1.3vh;
       width: 100%;
       height: 100%;
-      background: url("~assets/images/bg.jpg") no-repeat;
+      background: url("~assets/images/bg-0919.png") no-repeat;
       background-size: 100% 100%;
       color: #fff;
       .header {
@@ -152,6 +152,7 @@ export default {
             justify-content: flex-end;
             align-items: flex-end;
             user-select: none;
+            font-weight: 600;
           }
         }
         .nav-button {
