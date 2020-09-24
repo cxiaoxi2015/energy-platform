@@ -1,16 +1,11 @@
-<!-- 用能分析 -->
+<!-- 监测告警 -->
 <template>
   <div class="energy-analysis">
     <div class="content">
-      <div class="title">用能分析</div>
+      <div class="title">监测告警</div>
       <div class="detail">
-        <el-select v-model="energy" @change="handleEnergyChange">
-          <el-option value="electric" label="电"></el-option>
-          <el-option value="water" label="水"></el-option>
-          <el-option value="gas" label="气"></el-option>
-          <el-option value="heat" label="热"></el-option>
-        </el-select>
-        <div id="energyAnalysis"></div>
+        <div id="chartDev"></div>
+        <div id="chartComMun"></div>
       </div>
     </div>
   </div>
@@ -29,111 +24,140 @@ export default {
     }
   },
   methods: {
-    chartInit (data) {
-      const _this = this
-
+    chartDevInit (data) {
       const chart = new Chart({
-        container: 'energyAnalysis',
+        container: 'chartDev',
         autoFit: true,
-        padding: [50, 80]
+        padding: [0, 10, 0, 25]
       })
-
       chart.data(data)
-      chart.legend(false)
-
-      chart.axis('total', {
-        label: {
-          formatter: (val) => {
-            return val + (_this.energy === 'electric' || _this.energy === 'heat' ? 'kWh' : (_this.energy === 'gas' ? 'Nm' : 't'))
-          },
-          style: {
-            fill: '#ffffff'
-          }
-        },
-        line: {
-          lineWidth: 2, // 设置线的宽度
-          stroke: 'red' // 设置线的颜色
+      chart.scale('count', {
+        formatter: (val) => {
+          val = val * 100 + '%'
+          return val
         }
       })
-      chart.axis('building', {
-        label: {
-          style: {
-            fill: '#ffffff'
-          }
-        },
-        line: {
-          lineWidth: 1 // 设置线的宽度
-        }
+      chart.coordinate('theta', {
+        radius: 0.75,
+        innerRadius: 0.6
       })
-
       chart.tooltip({
-        shared: true,
-        itemTpl: `
-        <div style="margin-bottom: 10px;list-style:none;">
-            <span style="background-color:{color};" class="g2-tooltip-marker"></span>
-            {total}
-        </div>
-      `
+        showTitle: false,
+        showMarkers: false,
+        itemTpl: '<li class="g2-tooltip-list-item"><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
       })
-
-      chart.interval()
-        .position('building*total')
-        .size(30)
-        .color('building*total', function (building, total) {
-          if (_this.energy === 'electric') {
-            return '#167BFF'
-          } else if (_this.energy === 'gas') {
-            return '#A2AD45'
-          } else if (_this.energy === 'water') {
-            return '#00AFA8'
-          } else {
-            return '#C98071'
+      // 辅助文本
+      chart
+        .annotation()
+        .text({
+          position: ['50%', '50%'],
+          content: '设备类',
+          style: {
+            fontSize: 14,
+            fill: '#fff',
+            fontWeight: 'normal',
+            textAlign: 'center'
           }
         })
-        .tooltip('building*total', function (building, total) {
+      chart
+        .interval()
+        .adjust('stack')
+        .position('count')
+        .color('item')
+        .label('count', (count) => {
           return {
-            total: (_this.energy === 'electric' ? '用电量 ' : (_this.energy === 'gas' ? '用气量 ' : (_this.energy === 'water' ? '用水量 ' : '热量 '))) + total + (`${_this.energy === 'electric' || _this.energy === 'heat' ? ' kWh' : (_this.energy === 'gas' ? ' Nm' : ' t')}`)
+            style: {
+              fill: '#fff'
+            },
+            content: (data) => {
+              return `${data.item}: ${count}`
+            }
           }
         })
-      chart.render()
-      this.chart = chart
-    },
-
-    /**
-     * @description: 能源切换
-     * @date: 2020-09-17 14:19:31
-     * @auth: chenxiaoxi
-     */
-    handleEnergyChange () {
-      const showData = this.toggleEnergy()
-      this.chart.changeData(showData)
-    },
-
-    /**
-     * @description: 能源切换
-     * @date: 2020-09-17 16:46:18
-     * @auth: chenxiaoxi
-     */
-    toggleEnergy () {
-      const showData = []
-      this.energyData.map(item => {
-        showData.push({
-          building: item.building,
-          total: item[this.energy]
+        .tooltip('item*count', (item, count) => {
+          return {
+            name: item,
+            value: count
+          }
         })
+
+      chart.legend(false)
+      chart.interaction('element-active')
+
+      chart.render()
+    },
+    chartComMunInit (data) {
+      const chart = new Chart({
+        container: 'chartComMun',
+        autoFit: true,
+        padding: [0, 30, 0, 0]
       })
-      return showData
+      chart.data(data)
+      chart.scale('count', {
+        formatter: (val) => {
+          val = val * 100 + '%'
+          return val
+        }
+      })
+      chart.coordinate('theta', {
+        radius: 0.75,
+        innerRadius: 0.6
+      })
+      chart.tooltip({
+        showTitle: false,
+        showMarkers: false,
+        itemTpl: '<li class="g2-tooltip-list-item"><span style="background-color:{color};" class="g2-tooltip-marker"></span>{name}: {value}</li>'
+      })
+      // 辅助文本
+      chart
+        .annotation()
+        .text({
+          position: ['50%', '50%'],
+          content: '通讯类',
+          style: {
+            fontSize: 14,
+            fill: '#fff',
+            fontWeight: 'normal',
+            textAlign: 'center'
+          }
+        })
+      chart
+        .interval()
+        .adjust('stack')
+        .position('count')
+        .color('item')
+        .label('count', (count) => {
+          return {
+            style: {
+              fill: '#fff'
+            },
+            content: (data) => {
+              return `${data.item}: ${count}`
+            }
+          }
+        })
+        .tooltip('item*count', (item, count) => {
+          return {
+            name: item,
+            value: count
+          }
+        })
+
+      chart.legend(false)
+      chart.interaction('element-active')
+
+      chart.render()
     }
   },
   computed: {},
   watch: {},
   mounted () {
-    this.energyData = [
-      { building: '1号楼', electric: 168, gas: 208, water: 400, heat: 3000 }
-      // { building: '2号楼', electric: 468, gas: 158, water: 230, heat: 1234 }
+    const data = [
+      { item: '处理数', count: 20 },
+      { item: '总数', count: 42 }
     ]
-    const showData = this.toggleEnergy()
-    this.chartInit(showData)
+    this.chartDevInit(data)
+    this.chartComMunInit(data)
   }
 }
 </script>
@@ -150,31 +174,11 @@ export default {
       .detail {
         padding: 10px;
         position: relative;
-      }
-      ::v-deep {
-        .el-select {
-          position: absolute;
-          z-index: 10;
-          top: 10px;
-          right: 10px;
-          .el-input {
-            &.is-focus {
-              .el-input__inner {
-                border-color: transparent;
-              }
-            }
-            .el-input__inner {
-              width: 80px;
-              background: rgba(255, 255, 255, .85);
-              outline: none;
-              &:hover {
-                background: rgba(255, 255, 255, 1);
-              }
-              &:focus {
-                border-color: transparent;
-              }
-            }
-          }
+        display: flex;
+        #chartDev,
+        #chartComMun {
+          flex: 1;
+          overflow: hidden;
         }
       }
     }

@@ -64,6 +64,7 @@ export default {
   methods: {
     handlePanoramaClick () {
       this.active = 'Panorama'
+      this.$router.push('/comprehensiveAnalysis')
     },
     handleBIMClick () {
       this.active = 'BIM'
@@ -116,7 +117,7 @@ export default {
       padding: 0 1.1vw 1.3vh;
       width: 100%;
       height: 100%;
-      background: url("~assets/images/bg-0919.png") no-repeat;
+      background: url("~assets/images/bg-0921.jpg") no-repeat;
       background-size: 100% 100%;
       color: #fff;
       .header {
@@ -136,15 +137,13 @@ export default {
             align-items: flex-end;
           }
           .nav-button {
-            top: 5px;
-            right: 3vw;
+            right: 3.5vw;
           }
         }
         .header-right {
           position: relative;
           .nav-button {
-            top: 5px;
-            left: 3vw;
+            left: 3.5vw;
           }
           .user-info {
             height: 100%;
@@ -156,27 +155,20 @@ export default {
           }
         }
         .nav-button {
-          border-radius: 8px;
-          border: 1px solid #ddd;
           position: absolute;
-          padding: 10px;
-          background: #0091D1;
+          top: 3.2vh;
+          padding: 0 10px;
+          height: 2.03rem;
+          line-height: 4vh;
+          background: url("~assets/images/menu.png") no-repeat;
+          background-size: 100% 100%;
           user-select: none;
-          box-shadow: 0 0 5px 5px rgba(4, 76, 178, 0.5);
-          font-weight: 600;
-          &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.25);
-            display: none;
-          }
+          display: flex;
+          align-items: center;
+          justify-content: center;
           &.active {
-            background: #CAB51C;
-            box-shadow: 0 0 3px 1px #CAB51C;
+            background-image: url("~assets/images/menu-active.png");
+            color: #00EBFE;
           }
           &:hover {
             cursor: pointer;

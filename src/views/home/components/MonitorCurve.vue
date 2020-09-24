@@ -4,12 +4,12 @@
     <div class="content">
       <div class="title">监控曲线</div>
       <div class="detail">
-        <el-select v-model="energy" @change="handleEnergyChange">
-          <el-option value="electric" label="电"></el-option>
-          <el-option value="water" label="水"></el-option>
-          <el-option value="gas" label="气"></el-option>
-          <el-option value="heat" label="热"></el-option>
-        </el-select>
+        <ul class="category">
+          <li v-for="item in category"
+              :class="{'active': energy === item.value}"
+              :key="item.value"
+              @click="handleCategoryClick(item.value)">{{ item.label }}</li>
+        </ul>
         <div id="monitorCurve"></div>
       </div>
     </div>
@@ -26,7 +26,25 @@ export default {
     return {
       energy: 'electric',
       chart: null,
-      energyData: []
+      energyData: [],
+      category: [
+        {
+          label: '电',
+          value: 'electric'
+        },
+        {
+          label: '水',
+          value: 'water'
+        },
+        {
+          label: '气',
+          value: 'gas'
+        },
+        {
+          label: '热',
+          value: 'heat'
+        }
+      ],
     }
   },
   methods: {
@@ -35,7 +53,7 @@ export default {
       const chart = new Chart({
         container: 'monitorCurve',
         autoFit: true,
-        padding: [30, 60]
+        padding: [30, 30, 30, 60]
       })
 
       const colorSet = {
@@ -121,7 +139,8 @@ export default {
      * @date: 2020-09-17 14:19:31
      * @auth: chenxiaoxi
      */
-    handleEnergyChange (type) {
+    handleCategoryClick (type) {
+      this.energy = type
       const showData = this.energyData.filter(item => item.type === type)
       this.chart.changeData(showData)
     }
@@ -154,36 +173,17 @@ export default {
       .detail {
         padding: 10px;
         position: relative;
-        ::v-deep {
-          .el-select {
-            position: absolute;
-            z-index: 10;
-            top: 10px;
-            right: 10px;
-            .el-input {
-              &.is-focus {
-                .el-input__inner {
-                  border-color: transparent;
-                }
-              }
-              .el-input__inner {
-                width: 80px;
-                background: rgba(255, 255, 255, .85);
-                outline: none;
-                &:hover {
-                  background: rgba(255, 255, 255, 1);
-                }
-                &:focus {
-                  border-color: transparent;
-                }
-              }
-            }
-          }
+        display: flex;
+        flex-direction: column;
+        .category {
+          display: flex;
+          justify-content: flex-end;
         }
         #monitorCurve {
           width: 100%;
           height: 100%;
           overflow: hidden;
+          flex: 1;
         }
       }
     }
