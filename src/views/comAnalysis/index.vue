@@ -96,11 +96,13 @@ export default {
         flex-direction: column;
         width: 75vw;
         margin-right: 10px;
+        border-top-left-radius: 10px;
         .search-wrap {
           background: rgba(0, 0, 0, 0.1);
           border: 2px solid $border-color;
           margin-bottom: 10px;
           border-radius: 4px;
+          border-top-left-radius: 10px;
         }
         .result-wrap {
           flex: 1;
@@ -114,11 +116,14 @@ export default {
         display: flex;
         flex-direction: column;
         flex: 1;
+        overflow: hidden;
+        border-top-right-radius: 4px;
         .warning-wrap {
           height: 28vh;
           margin-bottom: 10px;
           border: 2px solid $border-color;
           background: rgba(255, 255, 255, 0.1);
+          border-top-right-radius: 10px;
         }
         .to-do-list-wrap {
           max-height: 28vh;

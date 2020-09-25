@@ -98,11 +98,18 @@ export default {
             textStyle: {
               color: '#fff',
               fontSize: 14
-            },
-            axisLine: {
-              lineStyle: {
-                color: '#fff'
-              }
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#fff'
+            }
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              type: 'dashed',
+              opacity: 0.5
             }
           }
         },
@@ -120,12 +127,11 @@ export default {
               fontSize: 14
             }
           },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
+          splitLine: {
+            show: true,
             lineStyle: {
-              color: 'transparent'
+              type: 'dashed',
+              opacity: 0.5
             }
           }
         },
