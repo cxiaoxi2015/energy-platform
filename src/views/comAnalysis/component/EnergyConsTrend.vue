@@ -45,7 +45,9 @@ export default {
       ],
       active: 'electric',
       myChart: null,
-      options: null
+      options: null,
+      data: [],
+      monthDay: []
     }
   },
   methods: {
@@ -56,7 +58,91 @@ export default {
 
     handleCategoryClick (value) {
       this.active = value
-      this.myChart.setOption(this.options)
+      const data = []
+      for (let i = 0; i < 31; i++) {
+        data.push(Math.ceil(Math.random(0, 1) * 100))
+      }
+      const options = {
+        title: {
+          left: 'center',
+          text: '用电趋势',
+          textStyle: {
+            color: '#fff'
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '5%',
+          bottom: '3%',
+          containLabel: true
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            crossStyle: {
+              color: '#fff'
+            }
+          }
+        },
+        xAxis: {
+          type: 'category',
+          data: this.monthDay,
+          name: '日',
+          nameTextStyle: {
+            color: '#fff',
+            padding: [0, 0, 0, -10]
+          },
+          axisLabel: {
+            show: true,
+            textStyle: {
+              color: '#fff',
+              fontSize: 14
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#fff'
+              }
+            }
+          }
+        },
+        yAxis: {
+          type: 'value',
+          name: this.active === 'electric' ? 'kwh' : (this.active === 'water' ? 'm³' : (this.active === 'gas' ? 'Nm' : 'kwh')),
+          nameTextStyle: {
+            color: '#fff',
+            padding: [0, 0, 0, -35]
+          },
+          axisLabel: {
+            show: true,
+            textStyle: {
+              color: '#fff',
+              fontSize: 14
+            }
+          },
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: 'transparent'
+            }
+          }
+        },
+        series: [
+          {
+            name: this.active === 'electric' ? '用电量' : (this.active === 'water' ? '用水量' : (this.active === 'gas' ? '用气量' : '热量')),
+            type: 'bar',
+            data: data,
+            itemStyle: {
+              normal: {
+                color: '#FFB980'
+              }
+            }
+          }
+        ]
+      }
+      this.myChart.setOption(options)
     }
   },
   computed: {},
@@ -68,10 +154,19 @@ export default {
       data.push(Math.ceil(Math.random(0, 1) * 100))
       monthDay.push(i + 1)
     }
+    this.data = data
+    this.monthDay = monthDay
     this.options = {
+      title: {
+        left: 'center',
+        text: '用电趋势',
+        textStyle: {
+          color: '#fff'
+        }
+      },
       grid: {
         left: '3%',
-        right: '4%',
+        right: '5%',
         bottom: '3%',
         containLabel: true
       },
@@ -84,51 +179,50 @@ export default {
           }
         }
       },
-      xAxis: [
-        {
-          type: 'category',
-          data: monthDay,
-          axisPointer: {
-            type: 'shadow'
-          },
-          axisLabel: {
-            show: true,
-            textStyle: {
-              color: '#fff',
-              fontSize: 14
-            }
-          },
-          axisTick: {
-            show: false
+      xAxis: {
+        type: 'category',
+        data: monthDay,
+        name: '日',
+        nameTextStyle: {
+          color: '#fff',
+          padding: [0, 0, 0, -10]
+        },
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
           },
           axisLine: {
             lineStyle: {
-              color: 'transparent'
+              color: '#fff'
             }
           }
         }
-      ],
-      yAxis: [
-        {
-          type: 'value',
-          name: this.active === 'electric' ? 'kwh' : (this.active === 'water' ? 'm³' : (this.active === 'gas' ? 'Nm' : 'kwh')),
-          axisLabel: {
-            show: true,
-            textStyle: {
-              color: '#fff',
-              fontSize: 14
-            }
-          },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: 'transparent'
-            }
+      },
+      yAxis: {
+        type: 'value',
+        name: this.active === 'electric' ? 'kwh' : (this.active === 'water' ? 'm³' : (this.active === 'gas' ? 'Nm' : 'kwh')),
+        nameTextStyle: {
+          color: '#fff',
+          padding: [0, 0, 0, -35]
+        },
+        axisLabel: {
+          show: true,
+          textStyle: {
+            color: '#fff',
+            fontSize: 14
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLine: {
+          lineStyle: {
+            color: 'transparent'
           }
         }
-      ],
+      },
       series: [
         {
           name: this.active === 'electric' ? '用电量' : (this.active === 'water' ? '用水量' : (this.active === 'gas' ? '用气量' : '热量')),

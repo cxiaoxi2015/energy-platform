@@ -24,7 +24,7 @@ export default {
         { item: '电', count: 40, percent: 0.4 },
         { item: '水', count: 21, percent: 0.21 },
         { item: '气', count: 17, percent: 0.17 },
-        { item: '热', count: 13, percent: 0.13 },
+        { item: '热', count: 13, percent: 0.13 }
       ]
       const chart = new Chart({
         container: 'propEnergyCons',
@@ -50,9 +50,12 @@ export default {
         .interval()
         .adjust('stack')
         .position('percent')
-        .color('item')
+        .color('item', ['#167BFF', '#558C7E', '#a9b151', '#EA5262'])
         .label('percent', (percent) => {
           return {
+            style: {
+              fill: '#fff'
+            },
             content: (data) => {
               return `${data.item}: ${percent * 100}%`
             }
@@ -69,9 +72,10 @@ export default {
       chart.interaction('element-active')
 
       chart.legend({
-        textStyle: {
-          textAlign: 'center',
-          fill: '#fff'
+        itemName: {
+          style: {
+            fill: '#fff'
+          }
         }
       })
       chart.render()

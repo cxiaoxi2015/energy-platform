@@ -28,7 +28,7 @@ export default {
       const chart = new Chart({
         container: 'chartDev',
         autoFit: true,
-        padding: [0, 10, 0, 25]
+        padding: [0, 25]
       })
       chart.data(data)
       chart.scale('count', {
@@ -38,8 +38,8 @@ export default {
         }
       })
       chart.coordinate('theta', {
-        radius: 0.75,
-        innerRadius: 0.6
+        radius: 0.5,
+        innerRadius: 0.65
       })
       chart.tooltip({
         showTitle: false,
@@ -55,7 +55,6 @@ export default {
           style: {
             fontSize: 14,
             fill: '#fff',
-            fontWeight: 'normal',
             textAlign: 'center'
           }
         })
@@ -63,7 +62,7 @@ export default {
         .interval()
         .adjust('stack')
         .position('count')
-        .color('item')
+        .color('item', ['#55CFA4', '#FFA500'])
         .label('count', (count) => {
           return {
             style: {
@@ -83,14 +82,14 @@ export default {
 
       chart.legend(false)
       chart.interaction('element-active')
-
       chart.render()
     },
     chartComMunInit (data) {
       const chart = new Chart({
         container: 'chartComMun',
         autoFit: true,
-        padding: [0, 30, 0, 0]
+        forceFit: true,
+        padding: [0, 20, 0, 15]
       })
       chart.data(data)
       chart.scale('count', {
@@ -100,8 +99,8 @@ export default {
         }
       })
       chart.coordinate('theta', {
-        radius: 0.75,
-        innerRadius: 0.6
+        radius: 0.45,
+        innerRadius: 0.65
       })
       chart.tooltip({
         showTitle: false,
@@ -125,7 +124,7 @@ export default {
         .interval()
         .adjust('stack')
         .position('count')
-        .color('item')
+        .color('item', ['#55CFA4', '#FFA500'])
         .label('count', (count) => {
           return {
             style: {
@@ -153,11 +152,15 @@ export default {
   watch: {},
   mounted () {
     const data = [
-      { item: '处理数', count: 20 },
-      { item: '总数', count: 42 }
+      { item: '处理数', count: 5 },
+      { item: '未处理', count: 22 }
+    ]
+    const data2 = [
+      { item: '处理数', count: 17 },
+      { item: '未处理', count: 20 }
     ]
     this.chartDevInit(data)
-    this.chartComMunInit(data)
+    this.chartComMunInit(data2)
   }
 }
 </script>
