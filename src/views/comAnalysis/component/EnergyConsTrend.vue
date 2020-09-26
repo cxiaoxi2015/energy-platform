@@ -99,18 +99,6 @@ export default {
               color: '#fff',
               fontSize: 14
             }
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#fff'
-            }
-          },
-          splitLine: {
-            show: true,
-            lineStyle: {
-              type: 'dashed',
-              opacity: 0.5
-            }
           }
         },
         yAxis: {
@@ -125,6 +113,11 @@ export default {
             textStyle: {
               color: '#fff',
               fontSize: 14
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: 'transparent'
             }
           },
           splitLine: {
@@ -226,6 +219,13 @@ export default {
         axisLine: {
           lineStyle: {
             color: 'transparent'
+          }
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            type: 'dashed',
+            opacity: 0.5
           }
         }
       },

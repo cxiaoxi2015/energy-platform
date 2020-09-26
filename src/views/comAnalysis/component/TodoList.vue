@@ -7,8 +7,12 @@
     </div>
     <ul class="to-do-list-content">
       <li v-for="(item, index) in list" :key="index">
-        <p>{{ item.content }}</p>
-        <span>{{ item.time }}</span>
+        <el-tooltip effect="light" :content="item.content" placement="top">
+          <div class="tooltip-inner">
+            <p>{{ item.content }}</p>
+            <span>{{ item.time }}</span>
+          </div>
+        </el-tooltip>
       </li>
     </ul>
   </div>
@@ -22,6 +26,14 @@ export default {
   data () {
     return {
       list: [
+        {
+          content: '凭澜苑2栋301水表疑似通讯异常，等待维修',
+          time: '2020-09-23 23:00:00'
+        },
+        {
+          content: '邻水苑3栋401水表数据异常，等待维修',
+          time: '2020-09-24 09:00:00'
+        },
         {
           content: '凭澜苑2栋301水表疑似通讯异常，等待维修',
           time: '2020-09-23 23:00:00'
@@ -46,7 +58,7 @@ export default {
       display: flex;
       flex-direction: column;
       width: 100%;
-      height: 100%;
+      height: 18vh;
       .title {
         display: flex;
         align-items: center;
@@ -64,7 +76,7 @@ export default {
       }
       .to-do-list-content {
         flex: 1;
-        overflow: hidden;
+        overflow-y: auto;
         padding: 10px;
         li {
           display: flex;
@@ -93,6 +105,10 @@ export default {
           }
           span {
             font-size: 0.8rem;
+          }
+          .tooltip-inner {
+            display: flex;
+            justify-content: space-between;
           }
         }
       }

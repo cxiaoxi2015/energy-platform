@@ -81,7 +81,7 @@ export default {
         dev: [
           {
             id: 'dev1001',
-            content: '警告：邻水苑3栋401  水表数据异常   显示数据33451',
+            content: '警告：邻水苑3栋401  水表数据异常   显示数据33451警告：邻水苑3栋401  水表数据异常   显示数据33451',
             dateTime: '2020-09-25 14:00'
           },
           {
@@ -201,9 +201,11 @@ export default {
               .info-title {
                 margin-bottom: 10px;
                 color: #EBB51C;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+                p {
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                }
               }
               .info-content {
                 color: #EBB51C;
