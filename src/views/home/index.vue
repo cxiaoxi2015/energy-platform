@@ -117,7 +117,7 @@ export default {
       padding: 0 1.1vw 1.3vh;
       width: 100%;
       height: 100%;
-      background: url("~assets/images/bg-0921.jpg") no-repeat;
+      background: url("~assets/images/bg-1019.png") no-repeat;
       background-size: 100% 100%;
       color: #fff;
       .header {

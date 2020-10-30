@@ -4,7 +4,20 @@
     <div class="content">
       <div class="title">监测告警</div>
       <div class="detail">
+        <div class="legend">
+          <div class="legend-item">
+            <div class="icon"></div>
+            <div class="legend-name">已处理</div>
+          </div>
+          <div class="legend-item">
+            <div class="icon"></div>
+            <div class="legend-name">未处理</div>
+          </div>
+        </div>
         <div id="chartDev"></div>
+        <div class="line-wrap">
+          <div class="line"></div>
+        </div>
         <div id="chartComMun"></div>
       </div>
     </div>
@@ -53,16 +66,17 @@ export default {
           position: ['50%', '50%'],
           content: '设备类',
           style: {
-            fontSize: 14,
             fill: '#fff',
-            textAlign: 'center'
+            fontSize: 12,
+            textAlign: 'center',
+            textBaseline: 'middle'
           }
         })
       chart
         .interval()
         .adjust('stack')
         .position('count')
-        .color('item', ['#55CFA4', '#FFA500'])
+        .color('item', ['#04FEFC', '#FFA500'])
         .label('count', (count) => {
           return {
             style: {
@@ -114,17 +128,17 @@ export default {
           position: ['50%', '50%'],
           content: '通讯类',
           style: {
-            fontSize: 14,
             fill: '#fff',
-            fontWeight: 'normal',
-            textAlign: 'center'
+            fontSize: 12,
+            textAlign: 'center',
+            textBaseline: 'middle'
           }
         })
       chart
         .interval()
         .adjust('stack')
         .position('count')
-        .color('item', ['#55CFA4', '#FFA500'])
+        .color('item', ['#04FEFC', '#FFA500'])
         .label('count', (count) => {
           return {
             style: {
@@ -178,10 +192,54 @@ export default {
         padding: 10px;
         position: relative;
         display: flex;
+        .legend {
+          position: absolute;
+          top: 25px;
+          left: 30px;
+          display: flex;
+          .legend-item {
+            display: flex;
+            align-items: center;
+            &:first-child {
+              margin-right: 15px;
+              .icon {
+                background: #04FEFC;
+              }
+            }
+            &:last-child {
+              .icon {
+                background: #FFA500;
+              }
+            }
+            .icon {
+              width: 20px;
+              height: 10px;
+              margin-right: 5px;
+              border-radius: 2px;
+            }
+            .legend-name {
+              font-size: 0.75rem;
+              font-weight: bold;
+            }
+          }
+        }
         #chartDev,
         #chartComMun {
           flex: 1;
           overflow: hidden;
+        }
+        .line-wrap {
+          width: 2px;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          margin: 0 5px;
+          .line {
+            border-radius: 2px;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(to bottom, rgba(8, 252, 252, 0.1), rgba(8, 252, 252, 0.5), rgba(8, 252, 252, 0.1));
+          }
         }
       }
     }
